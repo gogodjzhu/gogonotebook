@@ -1,7 +1,7 @@
 package double_pointer
 
 import (
-	"gogonotebook/common"
+	. "gogonotebook/common"
 	"math"
 )
 
@@ -9,7 +9,7 @@ type ThreeSumClosestSolver struct {
 }
 
 func (t ThreeSumClosestSolver) ThreeSumClosestSolve(nums []int, target int) int {
-	nums = common.SortInt(nums)
+	HeapSort(nums)
 	closest := nums[0] + nums[1] + nums[2]
 	closestDif := math.Abs(float64(closest - target))
 

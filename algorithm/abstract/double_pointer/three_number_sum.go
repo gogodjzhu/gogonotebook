@@ -11,7 +11,7 @@ type ThreeNumberSumSolve struct {
 }
 
 func (ThreeNumberSumSolve) ThreeNumberSumSolve(nums []int) [][]int {
-	nums = SortInt(nums)
+	nums = MergeSort(nums)
 
 	resultArr := make([][]int, 0)
 

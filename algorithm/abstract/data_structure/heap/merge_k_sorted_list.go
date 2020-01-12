@@ -6,14 +6,13 @@ type MergeKSortedListSolver struct {
 }
 
 func (m MergeKSortedListSolver) MergeKSortedListSolve(lists []*ListNode) *ListNode {
-	h := NewHeap()
-	count := 0
+	var arr []int
 	for _, list := range lists {
 		for list != nil {
-			h.Put(list.Val)
-			count += 1
+			arr = append(arr, list.Val)
 			list = list.Next
 		}
 	}
-	return h.ToList()
+	HeapSort(arr)
+	return Arr2List(arr)
 }

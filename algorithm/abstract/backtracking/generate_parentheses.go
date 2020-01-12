@@ -6,16 +6,5 @@ type GenerateParenthesesSolver struct {
 
 // 动态规划解括号生成器，很容易想到的是使用数组来保存每个括号序列的左括号数量，关键在于如何根据左括号的数量来判断新的括号生成策略
 func (gps *GenerateParenthesesSolver) GenerateParenthesesSolve(n int) []string {
-	gps.backtracking("", []string{"(", ")"}, 0, n)
-	return gps.res
-}
-
-func (gps *GenerateParenthesesSolver) backtracking(tracks string, options []string, leftCount int, n int) {
-	if len(options) <= 0 {
-		gps.res = append(gps.res, tracks)
-		return
-	}
-	for i := 0; i < len(options); i++ {
-		// TODO
-	}
+	return nil
 }

@@ -9,7 +9,7 @@ type FourNumberSumSolver struct {
 }
 
 func (FourNumberSumSolver) FourNumberSumSolve(nums []int, target int) [][]int {
-	// nums = common.SortInt(nums)
+	// nums = common.MergeSort(nums)
 	var result [][]int
 
 	num2idxMap := make(map[int][]int)
@@ -33,7 +33,7 @@ func (FourNumberSumSolver) FourNumberSumSolve(nums []int, target int) [][]int {
 					if idx == i || idx == s || idx == e { // 重复
 						continue
 					}
-					arr := common.SortInt([]int{nums[i], nums[s], nums[e], t})
+					arr := common.MergeSort([]int{nums[i], nums[s], nums[e], t})
 					str := fmt.Sprintf("%d_%d_%d_%d", arr[0], arr[1], arr[2], arr[3])
 					if _, ok := hashSet[str]; !ok {
 						result = append(result, arr)

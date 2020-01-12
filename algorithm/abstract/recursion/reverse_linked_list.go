@@ -2,10 +2,10 @@ package recursion
 
 import . "gogonotebook/common"
 
-type ReverseLinkedList struct {
+type ReverseLinkedListSolver struct {
 }
 
-func (r *ReverseLinkedList) ReverseLinkedListSolve(node *ListNode) *ListNode {
+func (r *ReverseLinkedListSolver) ReverseLinkedListSolve(node *ListNode) *ListNode {
 	if node == nil || node.Next == nil {
 		return node
 	}

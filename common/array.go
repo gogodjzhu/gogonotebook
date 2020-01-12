@@ -12,7 +12,7 @@ func DeleteIntByIndex(arr []int, i int) []int {
 }
 
 // 归并排序(升序)
-func SortInt(nums []int) []int {
+func MergeSort(nums []int) []int {
 	if len(nums) <= 1 {
 		return nums
 	}
@@ -20,8 +20,8 @@ func SortInt(nums []int) []int {
 	if len(nums) > 1 {
 		l := len(nums)
 		mid := l / 2
-		left := SortInt(nums[0:mid])
-		right := SortInt(nums[mid:])
+		left := MergeSort(nums[0:mid])
+		right := MergeSort(nums[mid:])
 
 		ret := make([]int, 0)
 		li := 0
@@ -44,6 +44,25 @@ func SortInt(nums []int) []int {
 		return ret
 	}
 	return nums
+}
+
+// 堆排序(升序)
+//0
+//1,2
+//3,4,5,6
+func HeapSort(nums []int) {
+	l := len(nums)
+	for i := 0; i < l; i++ {
+		for j := (l-i)/2 - 1; j >= 0; j-- {
+			if j*2+1 <= l-i-1 && nums[j] < nums[j*2+1] {
+				Swap(nums, j, j*2+1)
+			}
+			if j*2+2 <= l-i-1 && nums[j] < nums[j*2+2] {
+				Swap(nums, j, j*2+2)
+			}
+		}
+		Swap(nums, l-i-1, 0)
+	}
 }
 
 func SumInt(arr []int) int {

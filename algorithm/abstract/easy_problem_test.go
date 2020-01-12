@@ -1,9 +1,8 @@
 package abstract
 
 import (
-	"fmt"
-	"gogonotebook/algorithm/abstract/data_structure/heap"
-	"gogonotebook/algorithm/abstract/recursion"
+	"gogonotebook/algorithm/abstract/data_structure/list"
+	"gogonotebook/algorithm/abstract/double_pointer"
 	. "gogonotebook/common"
 	"testing"
 )
@@ -31,7 +30,7 @@ func TestMergeTwoSortedLists(t *testing.T) {
 			expected: Arr2List([]int{}),
 		},
 	}
-	solver := heap.MergeTwoSortedListSolver{}
+	solver := list.MergeTwoSortedListSolver{}
 	for i, testCase := range testCases {
 		actual := solver.MergeTwoSortedListsSolve(testCase.l1, testCase.l2)
 		if !IsIdentical(actual, testCase.expected) {
@@ -40,8 +39,38 @@ func TestMergeTwoSortedLists(t *testing.T) {
 	}
 }
 
-func TestReverseLinkedList(t *testing.T) {
-	recursionSolver := recursion.ReverseLinkedList{}
-	n := recursionSolver.ReverseLinkedListSolve(Arr2List([]int{}))
-	fmt.Println(n.ToString())
+func TestPalindromeLinkedList(t *testing.T) {
+	type testCase struct {
+		l  *ListNode
+		is bool
+	}
+	testCases := []testCase{
+		{
+			Arr2List([]int{1}),
+			true,
+		},
+		{
+			Arr2List([]int{1, 2}),
+			false,
+		},
+		{
+			Arr2List([]int{1, 1, 2, 1}),
+			false,
+		},
+		{
+			Arr2List([]int{1, 2, 3, 2, 1}),
+			true,
+		},
+		{
+			Arr2List([]int{1, 2, 3, 4, 2, 1}),
+			false,
+		},
+	}
+	solver := double_pointer.PalindromeLinkedListSolver{}
+	for i, testCase := range testCases {
+		actual := solver.PalindromeLinkedListSolve(testCase.l)
+		if actual != testCase.is {
+			t.Fatal("case#", i)
+		}
+	}
 }

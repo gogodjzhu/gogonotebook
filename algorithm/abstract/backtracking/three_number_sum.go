@@ -10,21 +10,18 @@ type ThreeNumberSumSolve struct {
 	hashSet map[string]bool
 }
 
-/**
-TODO 性能需要改进
-*/
 func (solver *ThreeNumberSumSolve) ThreeNumberSumSolve(nums []int) [][]int {
 	solver.res = make([][]int, 0)
 	solver.hashSet = make(map[string]bool)
 
-	nums = SortInt(nums)
+	nums = MergeSort(nums)
 	solver.backtracking([]int{}, nums)
 	return solver.res
 }
 
 func (solver *ThreeNumberSumSolve) backtracking(tracks, options []int) {
 	if len(tracks) == 3 && SumInt(tracks) == 0 {
-		tracks = SortInt(tracks)
+		tracks = MergeSort(tracks)
 		key := fmt.Sprintf("%+v", tracks)
 		if _, ok := solver.hashSet[key]; !ok {
 			solver.res = append(solver.res, tracks)

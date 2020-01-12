@@ -66,3 +66,16 @@ leetcode.q206.反转链表
 type ReverseLinkedList interface {
 	ReverseLinkedListSolve(node *ListNode) *ListNode
 }
+
+/**
+leetcode.q234.回文链表
+判断链表是否满足回文条件
+eg.1.
+input:1->2->1
+output:true
+input:1->2->3
+output:false
+*/
+type PalindromeLinkedList interface {
+	PalindromeLinkedListSolve(node *ListNode) bool
+}

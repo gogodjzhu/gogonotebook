@@ -78,6 +78,18 @@ type FourNumberSum interface {
 }
 
 /**
+leetcode.q19.删除链表的倒数第n个节点
+给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。
+eg.1.
+input: head=1->2->3->4->5, n = 2.
+output: 1->2->3->5
+*/
+type RemoveNthNodeFromEndOfList interface {
+	RemoveNthNodeFromEndOfListSolve(head *ListNode, n int) *ListNode
+}
+
+/**
+// TODO 待完成
 leetcode.q22.括号生成
 指定括号的对数，生成所有合法的组合
 eg.1.
@@ -96,12 +108,36 @@ type GenerateParentheses interface {
 }
 
 /**
-// TODO 待校验
+leetcode.q24.两两交换链表中的节点
+在链表中交换相邻的两个节点. PS.要求必须实际地改变链表指针而不是单纯交换值.
+eg.1.
+input: 1->2->3->4
+output: 2->1->4->3
+*/
+type SwapNodesInPairs interface {
+	SwapNodesInPairsSolve(head *ListNode) *ListNode
+}
+
+/**
 leetcode.q46.无重复数组的全排列
 给定无重复数字组成的的数组，求所有全排列组合
 */
 type Permutations interface {
 	PermutationsSolve(nums []int) [][]int
+}
+
+/**
+leetcode.q61.旋转链表
+将链表每个节点向右移动k个位置,k非负
+eg.1.
+input: l=[1->2->3->4], k=2
+output: [3->4->1->2]
+eg.2.
+input: l=[1->2->3->4], k=5
+output: [4->1->2->3]
+*/
+type RotateList interface {
+	RotateListSolve(l *ListNode, k int) *ListNode
 }
 
 /**
@@ -147,6 +183,17 @@ type MinimumPathSum interface {
 }
 
 /**
+leetcode.q75.颜色分类
+以红(0)白(1)蓝(2)的顺序原地排序颜色数组
+eg.1.
+input:  [2,0,2,1,1,0]
+output: [0,0,1,1,2,2]
+*/
+type SortColors interface {
+	SortColorsSolve(nums []int) []int
+}
+
+/**
 leetcode.q91.解码方法
 给定只包含数字的字符串，使用以下规则将数字解码为英文字符，求有几种解法
 'A' -> 1
@@ -180,15 +227,4 @@ return: 30 (路径为:7->3->8->7->5)
 
 type Triangle interface {
 	TriangleSolve(data [][]int) int
-}
-
-/**
-leetcode.q19.删除链表的倒数第n个节点
-给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。
-eg.1.
-input: head=1->2->3->4->5, n = 2.
-output: 1->2->3->5
-*/
-type RemoveNthNodeFromEndOfList interface {
-	RemoveNthNodeFromEndOfListSolve(head *ListNode, n int) *ListNode
 }
