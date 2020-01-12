@@ -165,6 +165,22 @@ type RotateImage interface {
 }
 
 /**
+leetcode.q49.字母异位词分组
+给定一组字符串数组, 将字母异位词组合为一组. 字母异位指字母相同, 但排列不同的字符串
+eg.1.
+input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+output:
+[
+  ["ate","eat","tea"],
+  ["nat","tan"],
+  ["bat"]
+]
+*/
+type GroupAnagrams interface {
+	GroupAnagramsSolve(strs []string) [][]string
+}
+
+/**
 leetcode.q56.合并区间
 合并给出的区间集合
 eg.1.
