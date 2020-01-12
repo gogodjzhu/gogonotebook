@@ -127,6 +127,27 @@ type Permutations interface {
 }
 
 /**
+leetcode.q48.旋转图像
+准确地说应该是原地旋转n*n二维数组
+eg.1.
+input:
+[
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+]
+output:
+[
+  [7,4,1],
+  [8,5,2],
+  [9,6,3]
+]
+*/
+type RotateImage interface {
+	RotateImageSolve(matrix [][]int)
+}
+
+/**
 leetcode.q56.合并区间
 合并给出的区间集合
 eg.1.

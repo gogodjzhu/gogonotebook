@@ -91,3 +91,27 @@ func Swap(arr []int, i, j int) {
 	arr[i] = arr[j]
 	arr[j] = tmp
 }
+
+func IdenticalArray(arr []int, bArr []int) bool {
+	if len(arr) != len(bArr) {
+		return false
+	}
+	for i, v := range arr {
+		if v != bArr[i] {
+			return false
+		}
+	}
+	return true
+}
+
+func IdenticalMatrix(matrix [][]int, bMatrix [][]int) bool {
+	if len(matrix) != len(bMatrix) {
+		return false
+	}
+	for i, v := range matrix {
+		if !IdenticalArray(v, bMatrix[i]) {
+			return false
+		}
+	}
+	return true
+}

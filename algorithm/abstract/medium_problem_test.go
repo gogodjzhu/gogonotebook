@@ -119,3 +119,49 @@ func TestMergeIntervals(t *testing.T) {
 		}
 	}
 }
+
+func TestRotateImage(t *testing.T) {
+	type textCase struct {
+		matrix   [][]int
+		expected [][]int
+	}
+	textCases := []textCase{
+		{
+			[][]int{
+				{1},
+			},
+			[][]int{
+				{1},
+			},
+		},
+		{
+			[][]int{
+				{1, 2},
+				{4, 5},
+			},
+			[][]int{
+				{4, 1},
+				{5, 2},
+			},
+		},
+		{
+			[][]int{
+				{1, 2, 3},
+				{4, 5, 6},
+				{7, 8, 9},
+			},
+			[][]int{
+				{7, 4, 1},
+				{8, 5, 2},
+				{9, 6, 3},
+			},
+		},
+	}
+	solver := array.RotateImageSolver{}
+	for id, tc := range textCases {
+		solver.RotateImageSolve(tc.matrix)
+		if !IdenticalMatrix(tc.matrix, tc.expected) {
+			t.Fatalf("case#%d, expected%+v, actual:%+v", id, tc.expected, tc.matrix)
+		}
+	}
+}
