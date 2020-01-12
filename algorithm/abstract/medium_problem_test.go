@@ -165,3 +165,47 @@ func TestRotateImage(t *testing.T) {
 		}
 	}
 }
+
+func TestNextPermutation(t *testing.T) {
+	type testCase struct {
+		nums     []int
+		expected []int
+	}
+	testCases := []testCase{
+		{
+			[]int{},
+			[]int{},
+		},
+		{
+			[]int{1},
+			[]int{1},
+		},
+		{
+			[]int{1, 2, 3},
+			[]int{1, 3, 2},
+		},
+		{
+			[]int{3, 2, 1},
+			[]int{1, 2, 3},
+		},
+		{
+			[]int{3, 3, 2, 1},
+			[]int{1, 2, 3, 3},
+		},
+		{
+			[]int{3, 4, 2, 1},
+			[]int{4, 1, 2, 3},
+		},
+		{
+			[]int{6, 2, 5, 2, 9, 3, 2, 1},
+			[]int{6, 2, 5, 3, 1, 2, 2, 9},
+		},
+	}
+	solver := array.NextPermutationSolver{}
+	for id, tc := range testCases {
+		solver.NextPermutationSolve(tc.nums)
+		if !IdenticalArray(tc.nums, tc.expected) {
+			t.Fatalf("case#%d, expected%+v, actual:%+v", id, tc.expected, tc.nums)
+		}
+	}
+}

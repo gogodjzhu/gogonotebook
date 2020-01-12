@@ -119,6 +119,23 @@ type SwapNodesInPairs interface {
 }
 
 /**
+leetcode.q31.下一个排列
+将给定的数组替换为字典排序的下一个
+eg.1.
+input: 1,2,3
+output: 1,3,2
+eg.2.
+input: 3,2,1
+output: 1,2,3
+eg.3.
+input: 1,1,5
+output: 1,5,1
+*/
+type NextPermutation interface {
+	NextPermutationSolve(nums []int)
+}
+
+/**
 leetcode.q46.无重复数组的全排列
 给定无重复数字组成的的数组，求所有全排列组合
 */
