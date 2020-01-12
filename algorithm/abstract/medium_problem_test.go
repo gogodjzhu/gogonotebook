@@ -85,3 +85,37 @@ func TestSortColors(t *testing.T) {
 	solver.SortColorsSolve(nums)
 	t.Log(nums)
 }
+
+func TestMergeIntervals(t *testing.T) {
+	type testCase struct {
+		intervals [][]int
+		expected  [][]int
+	}
+	testCases := []testCase{
+		{
+			[][]int{{2, 6}, {1, 3}, {8, 10}, {15, 18}},
+			[][]int{{1, 6}, {8, 10}, {15, 18}},
+		},
+		{
+			[][]int{{1, 4}, {4, 5}},
+			[][]int{{1, 5}},
+		},
+		{
+			[][]int{{1, 4}},
+			[][]int{{1, 4}},
+		},
+		{
+			[][]int{},
+			[][]int{},
+		},
+	}
+	solver := array.MergeIntervalsSolver{}
+	for id, tc := range testCases {
+		actual := solver.MergeIntervalsSolve(tc.intervals)
+		for i, interval := range actual {
+			if interval[0] != tc.expected[i][0] || interval[1] != tc.expected[i][1] {
+				t.Fatalf("case#%d, expected:%+v, actual:%+v", id, tc.expected, actual)
+			}
+		}
+	}
+}

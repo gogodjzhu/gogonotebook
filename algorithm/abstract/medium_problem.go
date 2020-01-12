@@ -127,6 +127,20 @@ type Permutations interface {
 }
 
 /**
+leetcode.q56.合并区间
+合并给出的区间集合
+eg.1.
+input: [[1,3],[2,6],[8,10],[15,18]]
+output: [[1,6],[8,10],[15,18]]
+eg.2
+input: [[1,4],[4,5]]
+output: [[1,5]]
+*/
+type MergeIntervals interface {
+	MergeIntervalsSolve(intervals [][]int) [][]int
+}
+
+/**
 leetcode.q61.旋转链表
 将链表每个节点向右移动k个位置,k非负
 eg.1.
