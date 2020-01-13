@@ -296,3 +296,15 @@ return: 30 (路径为:7->3->8->7->5)
 type Triangle interface {
 	TriangleSolve(data [][]int) int
 }
+
+/**
+leetcode.q328.奇偶链表
+给定一个单链表，把所有的奇数节点和偶数节点分别排在一起(奇在前, 偶在后)
+注意这里的奇偶值得是下标
+eg.1.
+input:  1->2->3->4->5->NULL
+output: 1->3->5->2->4->NULL
+*/
+type OddEvenLinkedList interface {
+	OddEvenLinkedListSolve(head *ListNode) *ListNode
+}

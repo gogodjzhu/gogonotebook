@@ -79,3 +79,17 @@ output:false
 type PalindromeLinkedList interface {
 	PalindromeLinkedListSolve(node *ListNode) bool
 }
+
+/**
+leetcode.q242.有效的字母异位词
+判断给定的两个字符串是否为字母异位词, 所谓字母异位词指的是包含相同的字符但位置不同的词
+eg.1.
+input: s="anagram",t="nagaram"
+output:true
+eg.2.
+input: s="rat",t="car"
+output:false
+*/
+type ValidAnagram interface {
+	ValidAnagramSolve(s, t string) bool
+}

@@ -205,7 +205,7 @@ func TestNextPermutation(t *testing.T) {
 	for id, tc := range testCases {
 		solver.NextPermutationSolve(tc.nums)
 		if !IdenticalArray(tc.nums, tc.expected) {
-			t.Fatalf("case#%d, expected%+v, actual:%+v", id, tc.expected, tc.nums)
+			t.Fatalf("case#%d, expected:%+v, actual:%+v", id, tc.expected, tc.nums)
 		}
 	}
 }
