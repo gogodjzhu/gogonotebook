@@ -4,6 +4,7 @@ import (
 	"gogonotebook/algorithm/abstract/data_structure/array"
 	"gogonotebook/algorithm/abstract/data_structure/list"
 	"gogonotebook/algorithm/abstract/double_pointer"
+	"gogonotebook/algorithm/abstract/dynamic_programming"
 	"gogonotebook/algorithm/abstract/recursion"
 	. "gogonotebook/common"
 	"testing"
@@ -206,6 +207,53 @@ func TestNextPermutation(t *testing.T) {
 		solver.NextPermutationSolve(tc.nums)
 		if !IdenticalArray(tc.nums, tc.expected) {
 			t.Fatalf("case#%d, expected:%+v, actual:%+v", id, tc.expected, tc.nums)
+		}
+	}
+}
+
+func TestPartitionEqualSubsetSum(t *testing.T) {
+	type testCase struct {
+		nums     []int
+		expected bool
+	}
+	testCases := []testCase{
+		{
+			[]int{1, 2, 5},
+			false,
+		},
+	}
+	solver := dynamic_programming.PartitionEqualSubsetSumSolver{}
+	for id, tc := range testCases {
+		actual := solver.PartitionEqualSubsetSumSolve(tc.nums)
+		if tc.expected != actual {
+			t.Fatalf("case#%d, expected: %v, actual: %v", id, tc.expected, actual)
+		}
+	}
+}
+
+func TestTargetSum(t *testing.T) {
+	type testCase struct {
+		nums     []int
+		t        int
+		expected int
+	}
+	testCases := []testCase{
+		{
+			[]int{1, 1, 1},
+			2,
+			0,
+		},
+		{
+			[]int{5},
+			5,
+			1,
+		},
+	}
+	solver := dynamic_programming.TargetSumSolver{}
+	for id, tc := range testCases {
+		actual := solver.TargetSumSolve(tc.nums, tc.t)
+		if actual != tc.expected {
+			t.Fatalf("case#%d, expected: %v, actual: %v", id, tc.expected, actual)
 		}
 	}
 }

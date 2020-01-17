@@ -93,3 +93,17 @@ output:false
 type ValidAnagram interface {
 	ValidAnagramSolve(s, t string) bool
 }
+
+/**
+leetcode.q509.斐波那契数
+给定函数:
+F(0) = 0,   F(1) = 1
+F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
+求F(N)
+eg.1.
+input: N=3
+F(3) = F(2) + F(1) = (F(1) + F(0)) + F(1) = 2
+*/
+type FibonacciNumber interface {
+	FibonacciNumberSolve(n int) int
+}

@@ -298,6 +298,20 @@ type Triangle interface {
 }
 
 /**
+leetcode.q322.零钱兑换
+给定不同面额的硬币coins, 和 总金额amount, 求能凑成总金额的方案中最少需要金币的数量. 如果没法组成amount, 返回-1
+eg.1.
+input: coins=[1, 2, 5], amount=11
+output: 3
+eg.2.
+input: coins=[2], amount=3
+output: -1
+*/
+type CoinChange interface {
+	CoinChangeSolve(coins []int, amount int) int
+}
+
+/**
 leetcode.q328.奇偶链表
 给定一个单链表，把所有的奇数节点和偶数节点分别排在一起(奇在前, 偶在后)
 注意这里的奇偶值得是下标
@@ -307,4 +321,53 @@ output: 1->3->5->2->4->NULL
 */
 type OddEvenLinkedList interface {
 	OddEvenLinkedListSolve(head *ListNode) *ListNode
+}
+
+/**
+leetcode.q518.零钱兑换II
+给定不同面额的硬币coins, 和 总金额amount, 求能凑成总金额的方案数量
+eg.1.
+input: coins=[1, 2, 5], amount=5
+output: 4
+eg.2.
+input: coins=[2], amount=3
+output: 0
+*/
+type CoinChange2 interface {
+	CoinChange2Solve(coins []int, amount int) int
+}
+
+/**
+leetcode.q416.分割等子集
+给定一个数组，判断是否可以将其分为两个和相等的子集
+eg.1.
+input: [1,5,11,5]
+output: true ([1,5,5] 和 [11])
+*/
+type PartitionEqualSubsetSum interface {
+	PartitionEqualSubsetSumSolve(nums []int) bool
+}
+
+/**
+leetcode.494.目标和
+给定个整型数组nums 和 目标t, 可以在数组任意元素上加+/-, 求最终的和等于t的方案数
+注意:
+
+数组非空，且长度不会超过20。
+初始的数组的和不会超过1000。
+保证返回的最终结果能被32位整数存下
+
+eg.1.
+input: nums: [1, 1, 1, 1, 1], S: 3
+output: 5
+
+explain:
+-1+1+1+1+1 = 3
++1-1+1+1+1 = 3
++1+1-1+1+1 = 3
++1+1+1-1+1 = 3
++1+1+1+1-1 = 3
+*/
+type TargetSum interface {
+	TargetSumSolve(nums []int, t int) int
 }
