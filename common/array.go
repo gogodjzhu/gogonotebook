@@ -115,3 +115,17 @@ func IdenticalMatrix(matrix [][]int, bMatrix [][]int) bool {
 	}
 	return true
 }
+
+func SortAndDistinct(arr []int) []int {
+	if len(arr) == 0 {
+		return arr
+	}
+	HeapSort(arr)
+	ret := []int{arr[0]}
+	for _, a := range arr {
+		if a != ret[len(ret)-1] {
+			ret = append(ret, a)
+		}
+	}
+	return ret
+}
