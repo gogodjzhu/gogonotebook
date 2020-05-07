@@ -1,7 +1,9 @@
 package abstract
 
 import (
+	"gogonotebook/algorithm/abstract/data_structure/graph"
 	"gogonotebook/algorithm/abstract/data_structure/list"
+	_map "gogonotebook/algorithm/abstract/data_structure/map"
 	"gogonotebook/algorithm/abstract/double_pointer"
 	. "gogonotebook/common"
 	"testing"
@@ -71,6 +73,70 @@ func TestPalindromeLinkedList(t *testing.T) {
 		actual := solver.PalindromeLinkedListSolve(testCase.l)
 		if actual != testCase.is {
 			t.Fatal("case#", i)
+		}
+	}
+}
+
+func TestShortestCompletingWord(t *testing.T) {
+	type testCase struct {
+		licensePlate string
+		words        []string
+		expected     string
+	}
+	testCases := []testCase{
+		{
+			"so",
+			[]string{"sad", "so", "soso"},
+			"so",
+		},
+		{
+			"1s3 PSt",
+			[]string{"step", "steps", "stripe", "stepple"},
+			"steps",
+		},
+		{
+			"1s3 456",
+			[]string{"looks", "pest", "stew", "show"},
+			"pest",
+		},
+	}
+	solver := _map.ShortestCompletingWordSolver{}
+	for id, testCase := range testCases {
+		actual := solver.ShortestCompletingWordSolve(testCase.licensePlate, testCase.words)
+		if actual != testCase.expected {
+			t.Fatalf("case#%d, expected:%s, actual:%s\n", id, testCase.expected, actual)
+		}
+	}
+}
+
+func TestFindTownJudge(t *testing.T) {
+	type testCase struct {
+		n        int
+		trust    [][]int
+		expected int
+	}
+	testCases := []testCase{
+		{
+			2,
+			[][]int{{1, 2}},
+			2,
+		},
+		{
+			3,
+			[][]int{{1, 3}, {2, 3}},
+			3,
+		},
+		{
+			3,
+			[][]int{{1, 3}, {2, 3}, {3, 1}},
+			-1,
+		},
+	}
+	solver := graph.FindTheTownJudge{}
+	for id, tc := range testCases {
+		actual := solver.FindTheTownJudgeSolve(tc.n, tc.trust)
+		if actual != tc.expected {
+			t.Fatalf("case#%d, expeced:%v, actual:%v", id, tc.expected, actual)
 		}
 	}
 }

@@ -156,3 +156,29 @@ func (PackProblemSolver) CompletePack03(V int, W []int) int {
 	}
 	return F[V]
 }
+
+// 寻找最大值
+func (PackProblemSolver) MultiplePack01(max int, weights []int, counts []int, values []int) int {
+	F := make([]int, max+1)
+	for i := 1; i <= len(weights); i++ {
+		Fi := make([]int, max+1)
+		copy(Fi, F)
+		for v := weights[i-1]; v <= max; v++ {
+			for c := 0; c <= counts[i-1] && v-weights[i-1]*c >= 0; c++ {
+				Fi[v] = Max(Fi[v], F[v-weights[i-1]*c]+values[i-1]*c)
+			}
+		}
+		F = Fi
+	}
+	return F[len(F)-1]
+}
+
+func (PackProblemSolver) MultiplePack02(max int, weights []int, counts []int, values []int) int {
+	// TODO
+	panic("implement me")
+}
+
+func (PackProblemSolver) MultiplePack03(max int, weights []int, counts []int, values []int) int {
+	// TODO
+	panic("implement me")
+}

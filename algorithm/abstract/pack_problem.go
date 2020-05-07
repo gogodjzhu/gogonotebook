@@ -25,4 +25,13 @@ type PackProblem interface {
 	// 寻找方案数, 必须放满
 	// 已知背包最大容量max, 有一批物品重weights, 价值values, 每件物品数量无限, 求放满背包有多少种方案
 	CompletePack03(max int, weights []int) int
+
+	/* 多重背包问题 */
+
+	// 寻找最大值
+	MultiplePack01(max int, weights []int, counts []int, values []int) int
+	// 寻找最大值,且必须放满
+	MultiplePack02(max int, weights []int, counts []int, values []int) int
+	// 寻找方案数,且必须放满
+	MultiplePack03(max int, weights []int, counts []int, values []int) int
 }

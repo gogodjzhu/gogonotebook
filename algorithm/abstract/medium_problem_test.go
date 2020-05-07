@@ -2,6 +2,7 @@ package abstract
 
 import (
 	"gogonotebook/algorithm/abstract/data_structure/array"
+	"gogonotebook/algorithm/abstract/data_structure/graph"
 	"gogonotebook/algorithm/abstract/data_structure/list"
 	"gogonotebook/algorithm/abstract/double_pointer"
 	"gogonotebook/algorithm/abstract/dynamic_programming"
@@ -84,7 +85,6 @@ func TestSortColors(t *testing.T) {
 	solver := array.SortColorsSolver{}
 	nums := []int{2, 0, 2, 1, 1, 0}
 	solver.SortColorsSolve(nums)
-	t.Log(nums)
 }
 
 func TestMergeIntervals(t *testing.T) {
@@ -254,6 +254,113 @@ func TestTargetSum(t *testing.T) {
 		actual := solver.TargetSumSolve(tc.nums, tc.t)
 		if actual != tc.expected {
 			t.Fatalf("case#%d, expected: %v, actual: %v", id, tc.expected, actual)
+		}
+	}
+}
+
+func TestRouteBetweenNodes(t *testing.T) {
+	type testCase struct {
+		n             int
+		graph         [][]int
+		start, target int
+		expected      bool
+	}
+	testCases := []testCase{
+		{
+			3,
+			[][]int{{0, 1}, {0, 2}, {1, 2}, {1, 2}},
+			0,
+			2,
+			true,
+		},
+		{
+			5,
+			[][]int{{0, 1}, {0, 2}, {0, 4}, {0, 4}, {0, 1}, {1, 3}, {1, 4}, {1, 3}, {2, 3}, {3, 4}},
+			0,
+			4,
+			true,
+		},
+		{
+			5,
+			[][]int{{0, 1}, {0, 3}, {2, 3}, {1, 4}},
+			0,
+			2,
+			false,
+		},
+	}
+	solver := graph.RouteBetweenNodesSolver{}
+	for id, tc := range testCases {
+		actual := solver.RouteBetweenNodesSolve(tc.n, tc.graph, tc.start, tc.target)
+		if actual != tc.expected {
+			t.Fatalf("case#%d, expected:%v, actual:%v", id, tc.expected, actual)
+		}
+	}
+}
+
+func TestCourseSchedule(t *testing.T) {
+	type testCase struct {
+		n        int
+		p        [][]int
+		expected bool
+	}
+	testCases := []testCase{
+		{
+			1,
+			[][]int{},
+			true,
+		},
+		{
+			2,
+			[][]int{},
+			true,
+		},
+		{
+			2,
+			[][]int{{1, 0}},
+			true,
+		},
+		{
+			2,
+			[][]int{{1, 0}, {0, 1}},
+			false,
+		},
+		{
+			3,
+			[][]int{{1, 0}, {1, 2}, {0, 1}},
+			false,
+		},
+		{
+			3,
+			[][]int{{1, 0}, {1, 2}, {2, 0}},
+			true,
+		},
+		{
+			3,
+			[][]int{{0, 2}, {1, 2}, {2, 0}},
+			false,
+		},
+		{
+			4,
+			[][]int{{1, 0}, {1, 2}, {2, 0}, {1, 3}},
+			true,
+		},
+		{
+			4,
+			[][]int{{1, 0}, {1, 2}, {2, 0}, {2, 1}},
+			false,
+		},
+		{
+			4,
+			[][]int{{0, 1}, {0, 2}, {1, 3}, {3, 0}},
+			false,
+		},
+	}
+
+	solver := graph.CourseScheduleSolver{}
+	for i, tc := range testCases {
+		actual := solver.CourseScheduleSolve(tc.n, tc.p)
+		if actual != tc.expected {
+			t.Fatalf("case#%d, expected:%v, actual:%v", i, tc.expected, actual)
 		}
 	}
 }

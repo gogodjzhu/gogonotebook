@@ -298,6 +298,32 @@ type Triangle interface {
 }
 
 /**
+leetcode.133.克隆图
+深拷贝图
+*/
+type CloneGraph interface {
+	CloneGraphSolve(n *GraphNode) *GraphNode
+}
+
+/**
+leetcode.207.课程表
+必须选修 n 门课程，记为 0 到 n-1 。
+在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们：[0,1]
+给定课程总量n以及它们的先决条件p，请你判断是否可能完成所有课程的学习？
+
+eg.1.
+input: n=2, p=[[1,0]]
+output: true
+
+eg.2.
+input: n=2, p=[[1,0],[0,1]]
+output: false
+*/
+type CourseSchedule interface {
+	CourseScheduleSolve(n int, p [][]int) bool
+}
+
+/**
 leetcode.q322.零钱兑换
 给定不同面额的硬币coins, 和 总金额amount, 求能凑成总金额的方案中最少需要金币的数量. 如果没法组成amount, 返回-1
 eg.1.
@@ -370,4 +396,18 @@ explain:
 */
 type TargetSum interface {
 	TargetSumSolve(nums []int, t int) int
+}
+
+/**
+leetcode.面试题04.01.节点间通路
+节点间通路。给定有向图，设计一个算法，找出两个节点之间是否存在一条路径。
+
+eg.1.
+input: n = 3, graph = [[0, 1], [0, 2], [1, 2], [1, 2]], start = 0, target = 2
+output: true
+
+注意: 其中input.n是节点数量,节点下标从0开始
+*/
+type RouteBetweenNodes interface {
+	RouteBetweenNodesSolve(n int, graph [][]int, start int, target int) bool
 }

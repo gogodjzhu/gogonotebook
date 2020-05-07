@@ -107,3 +107,28 @@ F(3) = F(2) + F(1) = (F(1) + F(0)) + F(1) = 2
 type FibonacciNumber interface {
 	FibonacciNumberSolve(n int) int
 }
+
+/**
+leetcode.q748.最短完整词
+如果单词列表（words）中的一个单词包含牌照（licensePlate）中所有的字母，那么我们称之为完整词。在所有完整词中，最短的单词我们称之为最短完整词
+如给定licensePlate="sa", 则words=["sad", "see", "sand"]中"sad"是最短完整词
+当在words拥有相同长度的最短完整词时，取words中位置靠前的作为结果
+
+eg.1.
+input: licensePlate = "1s3 PSt", words = ["step", "steps", "stripe", "stepple"]
+output："steps"
+注意, 我们仅关心字母，数字、空格或者其余额特殊字符不考虑
+*/
+type ShortestCompletingWord interface {
+	ShortestCompletingWordSolve(licensePlate string, words []string) string
+}
+
+/**
+leetcode.q997. 找到小镇的法官
+本质是在DAG中寻找一个节点，它满足下面的条件:
+1. 其余所有节点均直接指向此节点
+2. 此节点未指向任何别的节点
+*/
+type FindTheTownJudge interface {
+	FindTheTownJudgeSolve(n int, trust [][]int) int
+}

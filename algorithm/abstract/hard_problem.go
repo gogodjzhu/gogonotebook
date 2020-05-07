@@ -55,6 +55,21 @@ type WildcardMatching interface {
 }
 
 /**
+leetcode.q72.编辑距离
+给定两个单词 word1 和 word2，计算出将 word1 转换成 word2 所使用的最少操作数。
+eg.1.
+input: word1="horse", word2="ros"
+return: 3
+解释:
+horse -> rorse (将 'h' 替换为 'r')
+rorse -> rose (删除 'r')
+rose -> ros (删除 'e')
+*/
+type EditDistance interface {
+	EditDistanceSolve(word1, word2 string) int
+}
+
+/**
 leetcode.q97.交错字符串
 给定三个字符串 s1, s2, s3, 验证 s3 是否是由 s1 和 s2 交错组成的。
 eg.1.

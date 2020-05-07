@@ -129,3 +129,13 @@ func SortAndDistinct(arr []int) []int {
 	}
 	return ret
 }
+
+func DeleteItem(arr []int, item int) []int {
+	var newArr []int
+	for _, i := range arr {
+		if item != i {
+			newArr = append(newArr, i)
+		}
+	}
+	return newArr
+}

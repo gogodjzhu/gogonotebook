@@ -256,3 +256,43 @@ func TestCompletePack03(t *testing.T) {
 		}
 	}
 }
+
+func TestMultiplePack01(t *testing.T) {
+	type testCase struct {
+		V        int   // 最大容量
+		W        []int // 物品重量
+		C        []int // 物品数量
+		P        []int // 物品价值
+		expected int
+	}
+	testCases := []testCase{
+		{
+			8,
+			[]int{1, 2, 5},
+			[]int{1, 2, 1},
+			[]int{3, 5, 4},
+			13,
+		},
+		{
+			8,
+			[]int{1, 2, 5},
+			[]int{1, 2, 1},
+			[]int{3, 5, 6},
+			14,
+		},
+		{
+			2,
+			[]int{1},
+			[]int{2},
+			[]int{4},
+			8,
+		},
+	}
+	solver := dynamic_programming.PackProblemSolver{}
+	for id, tc := range testCases {
+		actual := solver.MultiplePack01(tc.V, tc.W, tc.C, tc.P)
+		if actual != tc.expected {
+			t.Fatalf("case#%d, expected:%d, actual:%d", id, tc.expected, actual)
+		}
+	}
+}
