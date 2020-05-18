@@ -132,3 +132,10 @@ leetcode.q997. 找到小镇的法官
 type FindTheTownJudge interface {
 	FindTheTownJudgeSolve(n int, trust [][]int) int
 }
+
+type FindShortestPath interface {
+	DFS(graph map[int][]int, start, end int) []int
+	BFS(graph map[int][]int, start, end int) []int
+	Dijkstra(graph map[int][]int, start, end int) []int
+	BellmanFord(graph map[int][]int, start, end int) []int
+}
