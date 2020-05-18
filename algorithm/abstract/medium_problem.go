@@ -350,20 +350,6 @@ type OddEvenLinkedList interface {
 }
 
 /**
-leetcode.q518.零钱兑换II
-给定不同面额的硬币coins, 和 总金额amount, 求能凑成总金额的方案数量
-eg.1.
-input: coins=[1, 2, 5], amount=5
-output: 4
-eg.2.
-input: coins=[2], amount=3
-output: 0
-*/
-type CoinChange2 interface {
-	CoinChange2Solve(coins []int, amount int) int
-}
-
-/**
 leetcode.q416.分割等子集
 给定一个数组，判断是否可以将其分为两个和相等的子集
 eg.1.
@@ -396,6 +382,20 @@ explain:
 */
 type TargetSum interface {
 	TargetSumSolve(nums []int, t int) int
+}
+
+/**
+leetcode.q518.零钱兑换II
+给定不同面额的硬币coins, 和 总金额amount, 求能凑成总金额的方案数量
+eg.1.
+input: coins=[1, 2, 5], amount=5
+output: 4
+eg.2.
+input: coins=[2], amount=3
+output: 0
+*/
+type CoinChange2 interface {
+	CoinChange2Solve(coins []int, amount int) int
 }
 
 /**
