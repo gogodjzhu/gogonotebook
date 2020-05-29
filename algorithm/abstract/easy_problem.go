@@ -133,9 +133,12 @@ type FindTheTownJudge interface {
 	FindTheTownJudgeSolve(n int, trust [][]int) int
 }
 
+/**
+gogodjzhu.notebook.1. 各种方法寻找最短路径的算法，及相关性能比较
+*/
 type FindShortestPath interface {
-	DFS(graph map[int][]int, start, end int) []int
-	BFS(graph map[int][]int, start, end int) []int
-	Dijkstra(graph map[int][]int, start, end int) []int
-	BellmanFord(graph map[int][]int, start, end int) []int
+	DFS(graph map[int][]int, num, start, end int) []int
+	BFS(graph map[int][]int, num, start, end int) []int
+	Dijkstra(graph map[int][]int, num, start, end int) []int
+	BellmanFord(graph map[int][]int, num, start, end int) []int
 }

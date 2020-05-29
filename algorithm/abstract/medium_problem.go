@@ -399,6 +399,24 @@ type CoinChange2 interface {
 }
 
 /**
+leetcode.q743.网络延迟时间
+有 N 个网络节点，标记为 1 到 N。
+给定一个列表 times，表示信号经过有向边的传递时间。 times[i] = (u, v, w)，其中 u 是源节点，v 是目标节点， w 是一个信号从源节点传递到目标节点的时间。
+求从给定节点K发出一个信号，所有节点都收到这个信号的最短时间。若无法让所有节点都收到，则返回-1
+
+eg.1.
+input: times = [[2,1,1],[2,3,1],[3,4,1]], N = 4, K = 2
+画成图即:
+[2]--1-->[1]
+   \
+    1-->[3]--1-->[4]
+output: 2
+*/
+type NetworkDelayTime interface {
+	NetworkDelayTimeSolve(times [][]int, N int, K int) int
+}
+
+/**
 leetcode.面试题04.01.节点间通路
 节点间通路。给定有向图，设计一个算法，找出两个节点之间是否存在一条路径。
 

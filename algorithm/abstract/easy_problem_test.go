@@ -140,3 +140,35 @@ func TestFindTownJudge(t *testing.T) {
 		}
 	}
 }
+
+func TestFindShortestPath(t *testing.T) {
+	type testCase struct {
+		graph           map[int][]int
+		num, start, end int
+		expected        []int
+	}
+	// 有环图
+	cyclicGraph := map[int][]int{0: {1, 2}, 1: {3, 4, 5}, 2: {1, 0}, 3: {1, 4}, 4: {5}, 5: {2}}
+	testCases := []testCase{
+		{
+			cyclicGraph, 6, 0, 0, []int{0},
+		}, {
+			cyclicGraph, 6, 0, 1, []int{0, 1},
+		}, {
+			cyclicGraph, 6, 1, 0, []int{1, 5, 2, 0},
+		},
+	}
+	solver := graph.FindShortestPathSolver{}
+	for id, tc := range testCases {
+		actual := solver.BFS(tc.graph, tc.num, tc.start, tc.end)
+		if !IdenticalArray(actual, tc.expected) {
+			t.Fatalf("case#%d, expected:%+v, actual%+v", id, tc.expected, actual)
+		}
+	}
+	for id, tc := range testCases {
+		actual := solver.Dijkstra(tc.graph, tc.num, tc.start, tc.end)
+		if !IdenticalArray(actual, tc.expected) {
+			t.Fatalf("case#%d, expected:%+v, actual%+v", id, tc.expected, actual)
+		}
+	}
+}
