@@ -34,7 +34,7 @@ func main() {
 			fmt.Println("inputStr 和 inputUnix 不能同时设置")
 			return
 		} else if *inputStr != "" {
-			if d, err := time.Parse("2006-01-02 15:04:05", *inputStr); err != nil {
+			if d, err := time.ParseInLocation("2006-01-02 15:04:05", *inputStr, time.Local); err != nil {
 				fmt.Println("时间格式化错误")
 				return
 			} else {
