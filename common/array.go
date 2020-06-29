@@ -139,3 +139,12 @@ func DeleteItem(arr []int, item int) []int {
 	}
 	return newArr
 }
+
+func ReverseArr(arr []int) []int {
+	if len(arr) == 0 || len(arr) == 1 {
+		return arr
+	}
+	subArr := arr[:len(arr)-1]
+	last := arr[len(arr)-1]
+	return append([]int{last}, ReverseArr(subArr)...)
+}
