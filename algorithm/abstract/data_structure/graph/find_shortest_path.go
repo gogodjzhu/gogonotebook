@@ -1,6 +1,9 @@
 package graph
 
-import "math"
+import (
+	. "gogonotebook/common"
+	"math"
+)
 
 /**
                  Negative-Edge-Weight     Positive-Edge-Weight    Cyclic      Runtime
@@ -19,6 +22,11 @@ func (f FindShortestPathSolver) DFS(graph map[int][]int, num, start, end int) []
 	return nil
 }
 
+/**
+本质是把从start开始,递归遍历所有的后继节点进行+1步进, 并通过visited数组保存所有的路径. 直到:
+1. 抵达end节点, 由于所有的路径都是+1步进的，因此第一条抵达end节点的路径即是最短路径(之一)
+2. 所有的路径上都无未访问的后继节点, 即不存在start->end的路径
+*/
 func (f FindShortestPathSolver) BFS(graph map[int][]int, num, start, end int) []int {
 	visited := [][]int{{start}}
 	for {
@@ -42,36 +50,39 @@ func (f FindShortestPathSolver) BFS(graph map[int][]int, num, start, end int) []
 	}
 }
 
+/**
+Dijkstra算法的核心是: 假设当前节点cur的最近后继节点是shortest, 则shortest的最短前驱为cur. 遍历所有的路径,
+将每个节点的最短前驱保存到数组shortestPrev之后, 即可以倒推出从start到任意节点end的最短路径
+PS.对于本例,graph是无权图,所以cur的最近后继节点是所有的后继节点
+*/
 func (f FindShortestPathSolver) Dijkstra(graph map[int][]int, num, start, end int) []int {
-	// TODO
 	var shortestPrev = make([]int, num)
+	for i := 0; i < num; i++ {
+		shortestPrev[i] = math.MinInt32
+	}
 	shortestPrev[start] = -1 // -1表示无最短前驱
 
 	nextVisit := []int{start}
 	for len(nextVisit) > 0 {
 		cur := nextVisit[0]
 		nextVisit = nextVisit[1:]
-		shortest := math.MaxInt32
 		for _, next := range graph[cur] {
-			if next < shortest {
-				shortest = next
+			// 由于本例graph是无权图,因此所有的next只要未访问过,最短前驱均为当前节点cur. 如果graph是有权的,则需要比较所有的next,
+			// 只有最短的那个next才确定其最短前驱为当前节点cur
+			if shortestPrev[next] == math.MinInt32 {
+				shortestPrev[next] = cur
+				nextVisit = append(nextVisit, next)
 			}
 		}
-		if shortest == math.MaxInt32 {
-			shortestPrev[cur] = -1
-			continue
-		}
-		shortestPrev[shortest] = cur
-		for _, next := range graph[shortest] {
-			nextVisit = append(nextVisit, next)
-		}
 	}
-	var path []int
+
+	// 根据end节点进行回溯,得到最短路径
+	path := []int{end}
 	for shortestPrev[end] != -1 {
 		path = append(path, shortestPrev[end])
 		end = shortestPrev[end]
 	}
-	return path
+	return ReverseArr(path)
 }
 
 func (f FindShortestPathSolver) BellmanFord(graph map[int][]int, num, start, end int) []int {

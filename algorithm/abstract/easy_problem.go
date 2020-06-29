@@ -135,6 +135,8 @@ type FindTheTownJudge interface {
 
 /**
 gogodjzhu.notebook.1. 各种方法寻找最短路径的算法，及相关性能比较
+参数:graph:有向无权图(邻接表表示方式),num:节点数量,start:开始节点,end:结束节点
+输出:最短路径
 */
 type FindShortestPath interface {
 	DFS(graph map[int][]int, num, start, end int) []int
