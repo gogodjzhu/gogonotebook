@@ -46,6 +46,14 @@ type ClimbingStairs interface {
 }
 
 /**
+leetcode.q100.相同的树
+给定两个二叉树,判断它们是否是相同的
+*/
+type IsSameTree interface {
+	IsSameTreeSolve(p *TreeNode, q *TreeNode) bool
+}
+
+/**
 leetcode.q121.买卖股票的最佳时机
 给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
 求最多只完成一笔交易(一次买入+一次卖出 or 不交易)能达成的最大收益
