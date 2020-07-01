@@ -13,3 +13,15 @@ output: true
 type RouteBetweenNodes interface {
 	RouteBetweenNodesSolve(n int, graph [][]int, start int, target int) bool
 }
+
+/**
+leetcode.面试题16.11. 跳水板
+给定两种规格的模板分别长为shorter和longer, 要求供选用k块木板时, 共可以组成多少种长度, 将其输出
+
+eg.1.
+input: shorter=1,longer=2,k=3
+output: {3,4,5,6}
+*/
+type DivingBoard interface {
+	DivingBoardSolve(shorter int, longer int, k int) []int
+}

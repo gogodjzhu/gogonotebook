@@ -130,6 +130,21 @@ func SortAndDistinct(arr []int) []int {
 	return ret
 }
 
+func Distinct(arr []int) []int {
+	if len(arr) == 0 {
+		return arr
+	}
+	set := make(map[int]interface{})
+	for _, a := range arr {
+		set[a] = nil
+	}
+	var ret []int
+	for k, _ := range set {
+		ret = append(ret, k)
+	}
+	return ret
+}
+
 func DeleteItem(arr []int, item int) []int {
 	var newArr []int
 	for _, i := range arr {

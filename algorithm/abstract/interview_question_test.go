@@ -2,6 +2,8 @@ package abstract
 
 import (
 	"gogonotebook/algorithm/abstract/data_structure/graph"
+	"gogonotebook/algorithm/abstract/math_trick"
+	"gogonotebook/common"
 	"testing"
 )
 
@@ -39,6 +41,29 @@ func TestRouteBetweenNodes(t *testing.T) {
 	for id, tc := range testCases {
 		actual := solver.RouteBetweenNodesSolve(tc.n, tc.graph, tc.start, tc.target)
 		if actual != tc.expected {
+			t.Fatalf("case#%d, expected:%v, actual:%v", id, tc.expected, actual)
+		}
+	}
+}
+
+func TestDivingBoard(t *testing.T) {
+	type testCase struct {
+		shorter, longer, k int
+		expected           []int
+	}
+	testCases := []testCase{
+		{
+			1, 2, 3, []int{3, 4, 5, 6},
+		}, {
+			2, 2, 3, []int{6},
+		}, {
+			2, 2, 0, []int{},
+		},
+	}
+	solver := math_trick.DivingBoardSolver{}
+	for id, tc := range testCases {
+		actual := solver.DivingBoardSolve(tc.shorter, tc.longer, tc.k)
+		if !common.IdenticalArray(actual, tc.expected) {
 			t.Fatalf("case#%d, expected:%v, actual:%v", id, tc.expected, actual)
 		}
 	}
