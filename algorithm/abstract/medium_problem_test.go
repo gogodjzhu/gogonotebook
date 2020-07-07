@@ -325,3 +325,42 @@ func TestCourseSchedule(t *testing.T) {
 		}
 	}
 }
+
+func TestLongestIncreasingSubsequence(t *testing.T) {
+	type testCase struct {
+		nums     []int
+		expected int
+	}
+	testCases := []testCase{
+		{
+			[]int{},
+			0,
+		},
+		{
+			[]int{1},
+			1,
+		},
+		{
+			[]int{3, 2, 1},
+			1,
+		},
+		{
+			[]int{1, 2, 3},
+			3,
+		},
+		{
+			[]int{1, 3, 2, 5},
+			3,
+		}, {
+			[]int{10, 9, 2, 5, 3, 7, 101, 18},
+			4,
+		},
+	}
+	solver := dynamic_programming.LongestIncreasingSubsequence{}
+	for i, tc := range testCases {
+		actual := solver.LongestIncreasingSubsequenceSolve(tc.nums)
+		if actual != tc.expected {
+			t.Fatalf("case#%d, expected:%d, actual:%d", i, tc.expected, actual)
+		}
+	}
+}

@@ -17,6 +17,10 @@ n = number of nodes, e = number of edges, g = largest number of adjacent nodes f
 type FindShortestPathSolver struct {
 }
 
+/**
+核心思路是从start开始,递归在栈中推入后继节点,直到后继节点为end,记下此时栈的高度即为当前路径的距离.
+再依次出栈
+*/
 func (f FindShortestPathSolver) DFS(graph map[int][]int, num, start, end int) []int {
 	// TODO
 	return nil

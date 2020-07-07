@@ -324,6 +324,18 @@ type CourseSchedule interface {
 }
 
 /**
+leetcode.300.最长上升子序列
+从给定序列中找出最长的上升子序列的长度
+eg.1.
+input: [10,9,2,5,3,7,101,18,1,2,3,4,5]
+output: 4
+最长上升子序列为[2,3,7,101], 他的长度为4
+*/
+type LongestIncreasingSubsequence interface {
+	LongestIncreasingSubsequenceSolve(nums []int) int
+}
+
+/**
 leetcode.q322.零钱兑换
 给定不同面额的硬币coins, 和 总金额amount, 求能凑成总金额的方案中最少需要金币的数量. 如果没法组成amount, 返回-1
 eg.1.
