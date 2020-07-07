@@ -4,7 +4,7 @@ import . "gogonotebook/common"
 
 /**
 // TODO 待完成
-leetcode.q3.无重复字符的最长子串
+leetcode.3.无重复字符的最长子串
 eg.1.
 input: s=abcab
 return: 3 (最长字串为3)
@@ -14,7 +14,7 @@ type LengthOfLongestSubstring interface {
 }
 
 /**
-leetcode.q5.最长回文字串
+leetcode.5.最长回文字串
 eg.1.
 input: s="hello"
 return: "ll"
@@ -27,7 +27,7 @@ type LongestPalindromicSubstring interface {
 }
 
 /**
-leetcode.q15.三数之和
+leetcode.15.三数之和
 从给定数组中找出所有和为零的三数组合
 */
 type ThreeNumberSum interface {
@@ -35,7 +35,7 @@ type ThreeNumberSum interface {
 }
 
 /**
-leetcode.q16.最接近的三数之和
+leetcode.16.最接近的三数之和
 在指定数组nums找出和最接近target的三数和,假定存在唯一解
 */
 type ThreeSumClosest interface {
@@ -43,7 +43,7 @@ type ThreeSumClosest interface {
 }
 
 /**
-leetcode.q17.电话号码的字母组合
+leetcode.17.电话号码的字母组合
 
 |  1  |  2  |  3  |
 |_____|_abc_|_def_|
@@ -62,7 +62,7 @@ type LetterCombinationsOfAPhoneNumber interface {
 }
 
 /**
-leetcode.q18.四数之和
+leetcode.18.四数之和
 从给定的数组中找出和与target相等的四数组合，组合不能重复
 eg.1.
 input: nums=[1, 0, -1, 0, -2, 2], target=0
@@ -78,7 +78,7 @@ type FourNumberSum interface {
 }
 
 /**
-leetcode.q19.删除链表的倒数第n个节点
+leetcode.19.删除链表的倒数第n个节点
 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。
 eg.1.
 input: head=1->2->3->4->5, n = 2.
@@ -90,7 +90,7 @@ type RemoveNthNodeFromEndOfList interface {
 
 /**
 // TODO 待完成
-leetcode.q22.括号生成
+leetcode.22.括号生成
 指定括号的对数，生成所有合法的组合
 eg.1.
 input: n=3
@@ -108,7 +108,7 @@ type GenerateParentheses interface {
 }
 
 /**
-leetcode.q24.两两交换链表中的节点
+leetcode.24.两两交换链表中的节点
 在链表中交换相邻的两个节点. PS.要求必须实际地改变链表指针而不是单纯交换值.
 eg.1.
 input: 1->2->3->4
@@ -119,7 +119,7 @@ type SwapNodesInPairs interface {
 }
 
 /**
-leetcode.q31.下一个排列
+leetcode.31.下一个排列
 将给定的数组替换为字典排序的下一个
 eg.1.
 input: 1,2,3
@@ -136,7 +136,7 @@ type NextPermutation interface {
 }
 
 /**
-leetcode.q46.无重复数组的全排列
+leetcode.46.无重复数组的全排列
 给定无重复数字组成的的数组，求所有全排列组合
 */
 type Permutations interface {
@@ -144,7 +144,7 @@ type Permutations interface {
 }
 
 /**
-leetcode.q48.旋转图像
+leetcode.48.旋转图像
 准确地说应该是原地旋转n*n二维数组
 eg.1.
 input:
@@ -165,7 +165,7 @@ type RotateImage interface {
 }
 
 /**
-leetcode.q49.字母异位词分组
+leetcode.49.字母异位词分组
 给定一组字符串数组, 将字母异位词组合为一组. 字母异位指字母相同, 但排列不同的字符串
 eg.1.
 input: ["eat", "tea", "tan", "ate", "nat", "bat"],
@@ -181,7 +181,7 @@ type GroupAnagrams interface {
 }
 
 /**
-leetcode.q56.合并区间
+leetcode.56.合并区间
 合并给出的区间集合
 eg.1.
 input: [[1,3],[2,6],[8,10],[15,18]]
@@ -195,7 +195,7 @@ type MergeIntervals interface {
 }
 
 /**
-leetcode.q61.旋转链表
+leetcode.61.旋转链表
 将链表每个节点向右移动k个位置,k非负
 eg.1.
 input: l=[1->2->3->4], k=2
@@ -209,7 +209,7 @@ type RotateList interface {
 }
 
 /**
-leetcode.q62.不同路径
+leetcode.62.不同路径
 给定m*n的矩阵，每一步只能向左或者向下，求从左上角(0,0)走到右下角(m-1,n-1)有多少种路径选择.
 input: m=3,n=2
 output: 3
@@ -219,7 +219,7 @@ type UniquePaths interface {
 }
 
 /**
-leetcode.q63.不同路径II
+leetcode.63.不同路径II
 给定矩阵,中间包含若干障碍(用数字1表示)，每一步只能向左或者向下，求从左上角(0,0)走到右下角(m-1,n-1)有多少种路径选择.
 input:
 [
@@ -234,7 +234,7 @@ type UniquePathsII interface {
 }
 
 /**
-leetcode.q64.最小路径和
+leetcode.64.最小路径和
 给定矩阵，每一个座标有一个数字，求从左上角到右下角经过数字和最小的路径
 每一步只能往右或者往下走一步
 eg.1.
@@ -251,7 +251,7 @@ type MinimumPathSum interface {
 }
 
 /**
-leetcode.q75.颜色分类
+leetcode.75.颜色分类
 以红(0)白(1)蓝(2)的顺序原地排序颜色数组
 eg.1.
 input:  [2,0,2,1,1,0]
@@ -262,7 +262,7 @@ type SortColors interface {
 }
 
 /**
-leetcode.q91.解码方法
+leetcode.91.解码方法
 给定只包含数字的字符串，使用以下规则将数字解码为英文字符，求有几种解法
 'A' -> 1
 'B' -> 2
@@ -280,7 +280,7 @@ type DecodeWays interface {
 }
 
 /**
-leetcode.q120.三角形最大(小)路径和
+leetcode.120.三角形最大(小)路径和
 在数字三角形中寻找一条从顶部到底部的路径使得路径上所经过的数字之和最大。
 路径上每一步都只能往左下 或 右下走。
 eg.1.
@@ -336,7 +336,7 @@ type LongestIncreasingSubsequence interface {
 }
 
 /**
-leetcode.q322.零钱兑换
+leetcode.322.零钱兑换
 给定不同面额的硬币coins, 和 总金额amount, 求能凑成总金额的方案中最少需要金币的数量. 如果没法组成amount, 返回-1
 eg.1.
 input: coins=[1, 2, 5], amount=11
@@ -350,7 +350,7 @@ type CoinChange interface {
 }
 
 /**
-leetcode.q328.奇偶链表
+leetcode.328.奇偶链表
 给定一个单链表，把所有的奇数节点和偶数节点分别排在一起(奇在前, 偶在后)
 注意这里的奇偶值得是下标
 eg.1.
@@ -362,7 +362,7 @@ type OddEvenLinkedList interface {
 }
 
 /**
-leetcode.q416.分割等子集
+leetcode.416.分割等子集
 给定一个数组，判断是否可以将其分为两个和相等的子集
 eg.1.
 input: [1,5,11,5]
@@ -397,7 +397,7 @@ type TargetSum interface {
 }
 
 /**
-leetcode.q518.零钱兑换II
+leetcode.518.零钱兑换II
 给定不同面额的硬币coins, 和 总金额amount, 求能凑成总金额的方案数量
 eg.1.
 input: coins=[1, 2, 5], amount=5
@@ -411,7 +411,7 @@ type CoinChange2 interface {
 }
 
 /**
-leetcode.q743.网络延迟时间
+leetcode.743.网络延迟时间
 有 N 个网络节点，标记为 1 到 N。
 给定一个列表 times，表示信号经过有向边的传递时间。 times[i] = (u, v, w)，其中 u 是源节点，v 是目标节点， w 是一个信号从源节点传递到目标节点的时间。
 求从给定节点K发出一个信号，所有节点都收到这个信号的最短时间。若无法让所有节点都收到，则返回-1
