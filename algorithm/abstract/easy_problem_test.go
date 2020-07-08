@@ -5,6 +5,7 @@ import (
 	"gogonotebook/algorithm/abstract/data_structure/list"
 	_map "gogonotebook/algorithm/abstract/data_structure/map"
 	"gogonotebook/algorithm/abstract/double_pointer"
+	"gogonotebook/algorithm/abstract/dynamic_programming"
 	. "gogonotebook/common"
 	"testing"
 )
@@ -169,6 +170,41 @@ func TestFindShortestPath(t *testing.T) {
 		actual := solver.Dijkstra(tc.graph, tc.num, tc.start, tc.end)
 		if !IdenticalArray(actual, tc.expected) {
 			t.Fatalf("case#%d, expected:%+v, actual%+v", id, tc.expected, actual)
+		}
+	}
+}
+
+func TestMaximumSubarray(t *testing.T) {
+	type testCase struct {
+		nums     []int
+		expected int
+	}
+	testCases := []testCase{
+		{
+			[]int{1},
+			1,
+		},
+		{
+			[]int{3, 2, 1},
+			6,
+		},
+		{
+			[]int{1, -2, 3},
+			3,
+		},
+		{
+			[]int{-1, 3, -2, 5},
+			6,
+		}, {
+			[]int{-2, 1, -3, 4, -1, 2, 1, -5, 4},
+			6,
+		},
+	}
+	solver := dynamic_programming.MaximumSubarraySolver{}
+	for i, tc := range testCases {
+		actual := solver.MaximumSubarraySolve(tc.nums)
+		if actual != tc.expected {
+			t.Fatalf("case#%d, expected:%d, actual:%d", i, tc.expected, actual)
 		}
 	}
 }
