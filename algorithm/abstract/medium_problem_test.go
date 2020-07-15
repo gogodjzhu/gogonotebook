@@ -364,3 +364,39 @@ func TestLongestIncreasingSubsequence(t *testing.T) {
 		}
 	}
 }
+
+func TestUniqueBinarySearchTree(t *testing.T) {
+	type testCase struct {
+		n        int
+		expected int
+	}
+	testCases := []testCase{
+		{
+			0,
+			1,
+		},
+		{
+			1,
+			1,
+		},
+		{
+			2,
+			2,
+		},
+		{
+			3,
+			5,
+		},
+		{
+			4,
+			14,
+		},
+	}
+	solver := dynamic_programming.UniqueBinarySearchTree{}
+	for i, tc := range testCases {
+		actual := solver.UniqueBinarySearchTreeSolve(tc.n)
+		if actual != tc.expected {
+			t.Fatalf("case#%d, expected:%d, actual:%d", i, tc.expected, actual)
+		}
+	}
+}

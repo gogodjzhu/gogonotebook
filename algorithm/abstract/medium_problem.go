@@ -280,6 +280,18 @@ type DecodeWays interface {
 }
 
 /**
+leetcode.96.不同的二叉搜索树
+给定一个整数n, 求以1...n为节点组成的二叉搜索树有多少种
+eg.1.
+input: 3
+output: 5
+二叉搜索树的定义:左小右大
+*/
+type UniqueBinarySearchTree interface {
+	UniqueBinarySearchTreeSolve(n int) int
+}
+
+/**
 leetcode.120.三角形最大(小)路径和
 在数字三角形中寻找一条从顶部到底部的路径使得路径上所经过的数字之和最大。
 路径上每一步都只能往左下 或 右下走。
