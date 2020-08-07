@@ -85,46 +85,78 @@ func TestLargestRectangleInHistogram(t *testing.T) {
 		expected int
 	}
 	testCases := []testCase{
+		//{
+		//	[]int{2, 1, 3, 2},
+		//	4,
+		//},
+		//{
+		//	[]int{2, 1, 5, 6, 2, 3},
+		//	10,
+		//},
+		//{
+		//	[]int{1, 2, 2},
+		//	4,
+		//},
+		//{
+		//	[]int{0,2,0},
+		//	2,
+		//},
 		{
-			[]int{5},
-			5,
-		},
-		{
-			[]int{4, 2, 1},
-			4,
-		},
-		{
-			[]int{1, 2, 4},
-			4,
-		},
-		{
-			[]int{1, 9, 20},
-			20,
-		},
-		{
-			[]int{20, 9, 1},
-			20,
-		},
-		{
-			[]int{1, 1, 6, 2},
-			6,
-		},
-		{
-			[]int{2, 1, 3, 2},
-			4,
-		},
-		{
-			[]int{2, 1, 5, 6, 2, 3},
-			10,
-		},
-		{
-			[]int{1, 2, 2},
-			4,
+			[]int{5, 4, 1, 2},
+			8,
 		},
 	}
 	dynamicSolver := dynamic_programming.LargestRectangleInHistogramSolver{}
 	for id, tc := range testCases {
 		actual := dynamicSolver.LargestRectangleInHistogramSolve(tc.nums)
+		if actual != tc.expected {
+			t.Fatalf("case#%d, expected:%d, actual:%d", id, tc.expected, actual)
+		}
+	}
+}
+
+/**
+[
+  ["1","0","1","0","0"],
+  ["1","0","1","1","1"],
+  ["1","1","1","1","1"],
+  ["1","0","0","1","0"]
+]
+*/
+func TestMaximalRectangle(t *testing.T) {
+	type testCase struct {
+		nums     [][]byte
+		expected int
+	}
+	testCases := []testCase{
+		{
+			[][]byte{
+				{'1', '1', '1'},
+				{'1', '1', '0'},
+				{'1', '1', '0'},
+			},
+			6,
+		},
+		{
+			[][]byte{
+				{'1', '1', '1'},
+				{'1', '0', '1'},
+				{'1', '1', '1'},
+			},
+			3,
+		},
+		{
+			[][]byte{
+				{'1', '1', '1', '1', '1', '1', '1'},
+				{'1', '1', '0', '0', '1', '0', '1'},
+				{'1', '1', '0', '0', '0', '1', '0'},
+			},
+			7,
+		},
+	}
+	dynamicSolver := dynamic_programming.MaximalRectangleSolver{}
+	for id, tc := range testCases {
+		actual := dynamicSolver.MaximalRectangleSolve(tc.nums)
 		if actual != tc.expected {
 			t.Fatalf("case#%d, expected:%d, actual:%d", id, tc.expected, actual)
 		}

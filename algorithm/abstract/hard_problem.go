@@ -84,7 +84,6 @@ type InterleavingString interface {
 }
 
 /**
-// TODO 待完成
 leetcode.84.柱状图中的最大矩阵
 在给出的柱状图中, 找出能框出来的最大连续矩形面积
 eg.1.
@@ -93,4 +92,21 @@ output:10
 */
 type LargestRectangleInHistogram interface {
 	LargestRectangleInHistogramSolve(heights []int) int
+}
+
+/**
+leetcode.85.最大矩阵
+给定一个仅包含 0 和 1 的二维二进制矩阵，找出只包含 1 的最大矩形，并返回其面积
+eg.1.
+input:
+[
+  ["1","0","1","0","0"],
+  ["1","0","1","1","1"],
+  ["1","1","1","1","1"],
+  ["1","0","0","1","0"]
+]
+output:6
+*/
+type MaximalRectangle interface {
+	MaximalRectangleSolve(matrix [][]byte) int
 }
