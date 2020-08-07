@@ -400,3 +400,129 @@ func TestUniqueBinarySearchTree(t *testing.T) {
 		}
 	}
 }
+
+func TestNetworkDelayTimeSolve(t *testing.T) {
+	type testCase struct {
+		time     [][]int
+		num      int
+		start    int
+		expected int
+	}
+	testCases := []testCase{
+		{
+			[][]int{{2, 1, 2}, {2, 3, 1}, {3, 4, 3}},
+			4, 1, -1,
+		},
+		{
+			[][]int{{2, 1, 2}, {2, 3, 1}, {3, 4, 3}},
+			4, 2, 4,
+		},
+		{
+			[][]int{{2, 1, 1}, {2, 3, 1}, {3, 4, 1}},
+			4, 2, 2,
+		},
+		{
+			[][]int{{1, 3, 1}, {2, 1, 1}, {2, 3, 1}, {3, 4, 1}},
+			4, 2, 2,
+		},
+		{
+			[][]int{{1, 3, 0}, {2, 1, 2}, {2, 3, 1}, {3, 4, 3}},
+			4, 2, 4,
+		},
+		{
+			[][]int{{4, 2, 76}, {1, 3, 79}, {3, 1, 81}, {4, 3, 30}, {2, 1, 47}, {1, 5, 61}, {1, 4, 99}, {3, 4, 68}, {3, 5, 46}, {4, 1, 6}, {5, 4, 7}, {5, 3, 44}, {4, 5, 19}, {2, 3, 13}, {3, 2, 18}, {1, 2, 0}, {5, 1, 25}, {2, 5, 58}, {2, 4, 77}, {5, 2, 74}},
+			5,
+			3,
+			59,
+		},
+	}
+	solver := graph.NetworkDelayTimeSolver{}
+	for i, tc := range testCases {
+		actual := solver.NetworkDelayTimeSolve(tc.time, tc.num, tc.start)
+		if actual != tc.expected {
+			t.Fatalf("case#%d, expected:%d, actual:%d", i, tc.expected, actual)
+		}
+	}
+}
+
+/**
+有向无权图最短路径
+*/
+func TestFindConstantWeightShortestPath(t *testing.T) {
+	type testConsLenCase struct {
+		graph           map[int][]int
+		num, start, end int
+		expected        []int
+	}
+	cyclicConsLenGraph := map[int][]int{0: {1, 2}, 1: {3, 5, 4}, 2: {0, 1}, 3: {4, 1}, 4: {5}, 5: {2}}
+	cyclicConsLenGraphCases := []testConsLenCase{
+		{
+			cyclicConsLenGraph, 6, 0, 5, []int{0, 1, 5},
+		},
+		{
+			cyclicConsLenGraph, 6, 0, 1, []int{0, 1},
+		},
+		{
+			cyclicConsLenGraph, 6, 1, 0, []int{1, 5, 2, 0},
+		},
+		{
+			cyclicConsLenGraph, 6, 4, 1, []int{4, 5, 2, 1},
+		},
+	}
+	solver := graph.FindShortestPathSolver{}
+	for id, tc := range cyclicConsLenGraphCases {
+		actual := solver.BFS(tc.graph, tc.num, tc.start, tc.end)
+		if !IdenticalArray(actual, tc.expected) {
+			t.Fatalf("case#%d, expected:%+v, actual%+v", id, tc.expected, actual)
+		}
+	}
+	for id, tc := range cyclicConsLenGraphCases {
+		actual := solver.DijkstraConstantWeight(tc.graph, tc.num, tc.start, tc.end)
+		if !IdenticalArray(actual, tc.expected) {
+			t.Fatalf("case#%d, expected:%+v, actual%+v", id, tc.expected, actual)
+		}
+	}
+}
+
+/**
+有向有权图最短路径
+*/
+func TestFindDiffWeightShortestPath(t *testing.T) {
+	// 带权重的图
+	type testDiffLenCase struct {
+		graph           map[int]map[int]int
+		num, start, end int
+		expected        []int
+	}
+	// 无环有权图
+	unCyclicDiffLenGraph := map[int]map[int]int{0: {1: 10, 2: 1}, 2: {3: 1}}
+	// 有环有权图
+	cyclicDiffLenGraph := map[int]map[int]int{0: {1: 10, 2: 1}, 1: {3: 1, 4: 1, 5: 1}, 2: {1: 1, 0: 1}, 3: {1: 1, 4: 1}, 4: {5: 1}, 5: {2: 1}}
+	cyclicDiffLenGraphCases := []testDiffLenCase{
+		{
+			unCyclicDiffLenGraph, 4, 2, 1, nil,
+		},
+		{
+			cyclicDiffLenGraph, 6, 0, 5, []int{0, 2, 1, 5},
+		}, {
+			cyclicDiffLenGraph, 6, 0, 1, []int{0, 2, 1},
+		}, {
+			cyclicDiffLenGraph, 6, 1, 0, []int{1, 5, 2, 0},
+		}, {
+			map[int]map[int]int{
+				0: {2: 79, 4: 61, 3: 99, 1: 0},
+				1: {0: 47, 2: 13, 4: 58, 3: 77},
+				2: {3: 68, 0: 81, 4: 46, 1: 18},
+				3: {1: 76, 0: 6, 2: 30, 4: 19},
+				4: {3: 7, 2: 44, 0: 25, 1: 74}},
+			5, 2, 0, []int{2, 4, 3, 0},
+		},
+	}
+	solver := graph.FindShortestPathSolver{}
+	for id, tc := range cyclicDiffLenGraphCases {
+		actual := solver.DijkstraDiffWeight(tc.graph, tc.num, tc.start, tc.end)
+		if !IdenticalArray(actual, tc.expected) {
+			t.Fatalf("case#%d, expected:%+v, actual%+v", id, tc.expected, actual)
+		}
+	}
+}

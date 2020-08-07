@@ -163,3 +163,12 @@ func ReverseArr(arr []int) []int {
 	last := arr[len(arr)-1]
 	return append([]int{last}, ReverseArr(subArr)...)
 }
+
+func Contains(arr []int, item int) bool {
+	for _, a := range arr {
+		if item == a {
+			return true
+		}
+	}
+	return false
+}

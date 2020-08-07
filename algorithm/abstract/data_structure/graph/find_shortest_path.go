@@ -9,7 +9,7 @@ import (
                  Negative-Edge-Weight     Positive-Edge-Weight    Cyclic      Runtime
 DFS                     NO                         NO               NO        O(n+e)
 BFS                     NO                         NO               YES       O(n+e) or O(g^d)
-Dijkstra                NO                         YES              YES       O(e+n*log(n))
+DijkstraConstantWeight  NO                         YES              YES       O(e+n*log(n))
 BellmanFord             YES                        YES              YES       O(n*e)
 
 n = number of nodes, e = number of edges, g = largest number of adjacent nodes for any node, d = length of the shortest path
@@ -36,30 +36,32 @@ func (f FindShortestPathSolver) BFS(graph map[int][]int, num, start, end int) []
 	for {
 		var nextGraph [][]int
 		for _, arr := range visited {
-			if arr[len(arr)-1] == end {
+			last := arr[len(arr)-1]
+			if last == end {
 				return arr
 			}
-			if nextArr, ok := graph[arr[len(arr)-1]]; !ok {
-				continue
-			} else {
+			nextArr := graph[last]
+			if nextArr != nil {
 				for _, next := range nextArr {
-					nextGraph = append(nextGraph, append(arr, next))
+					if Contains(arr, next) {
+						continue
+					} else {
+						nextGraph = append(nextGraph, append(arr, next))
+					}
 				}
 			}
 		}
 		if len(nextGraph) == 0 {
-			return nil
+			return []int{}
 		}
 		visited = nextGraph
 	}
 }
 
 /**
-Dijkstra算法的核心是: 假设当前节点cur的最近后继节点是shortest, 则shortest的最短前驱为cur. 遍历所有的路径,
-将每个节点的最短前驱保存到数组shortestPrev之后, 即可以倒推出从start到任意节点end的最短路径
-PS.对于本例,graph是无权图,所以cur的最近后继节点是所有的后继节点
+对比此方法与 DijkstraDiffWeight 方法的区别以深入理解
 */
-func (f FindShortestPathSolver) Dijkstra(graph map[int][]int, num, start, end int) []int {
+func (f FindShortestPathSolver) DijkstraConstantWeight(graph map[int][]int, num, start, end int) []int {
 	var shortestPrev = make([]int, num)
 	for i := 0; i < num; i++ {
 		shortestPrev[i] = math.MinInt32
@@ -73,6 +75,8 @@ func (f FindShortestPathSolver) Dijkstra(graph map[int][]int, num, start, end in
 		for _, next := range graph[cur] {
 			// 由于本例graph是无权图,因此所有的next只要未访问过,最短前驱均为当前节点cur. 如果graph是有权的,则需要比较所有的next,
 			// 只有最短的那个next才确定其最短前驱为当前节点cur
+			// PS. 有点类似预BFS的概念, 不同在于BFS未保存松弛状态shortestPrev, 导致其只能计算单源单目的最短路径,
+			// 而这里可以利用shortestPrev计算源到任意节点的最短路径
 			if shortestPrev[next] == math.MinInt32 {
 				shortestPrev[next] = cur
 				nextVisit = append(nextVisit, next)
@@ -87,6 +91,63 @@ func (f FindShortestPathSolver) Dijkstra(graph map[int][]int, num, start, end in
 		end = shortestPrev[end]
 	}
 	return ReverseArr(path)
+}
+
+/**
+经典Dijkstra算法在单源最短路径问题的应用
+核心在对'松弛(relaxation)'概念的理解, 通过在每一轮操作中取出距离start最近的节点,以之为步进源点松弛所有邻接点,
+每轮松弛之后都可能导致部分节点跟start的距离变近. 而因为被松弛的节点是以步进源点为前驱的, 所以每一轮的步进源点都
+可以被标记为最靠近start节点的状态, 进而每轮松弛都可以确定一个节点的最短距离, 使得算法收敛
+*/
+func (f FindShortestPathSolver) DijkstraDiffWeight(graph map[int]map[int]int, num, start, end int) []int {
+	var Dis = make([]int, num)  // 保存从[start]到[每个节点]的最短距离, max表示不可达
+	var Prev = make([]int, num) // 保存从[start]到[每个节点]的最短前驱节点, -1表示无前驱
+	var visited = make([]bool, num)
+	for i := 0; i < len(Dis); i++ {
+		Dis[i] = math.MaxInt32
+		Prev[i] = -1
+	}
+	Dis[start] = 0   // 0表示[start]到[当前节点start],距离为0
+	Prev[start] = -1 // -1表示[当前节点start]无前驱(本身就是起点)
+	for {            // 每次循环为一轮松弛
+		visitedIdx := -1
+		visitedLen := math.MaxInt32
+		for i := 0; i < num; i++ {
+			// 遍历所有未visited的节点, 获取Dis[i]最短距离的作为当前visited节点(即此轮松弛的起点)
+			if !visited[i] && visitedLen > Dis[i] {
+				visitedIdx = i
+				visitedLen = Dis[i]
+			}
+		}
+		// 无当前visited节点, 即所有未visited的节点(如果有的话)长度均为maxInt32,
+		// 即start无法到达任何剩余的(!visited[i])节点, 无需继续松弛, 退出循环
+		if visitedIdx == -1 {
+			break
+		}
+		visited[visitedIdx] = true
+		// visited 节点此时是所有!visited节点中最靠近start的一个节点, 那么从此节点出发到达其余节点可能松弛邻接节点的距离,
+		// 我们逐个判断并更新Dis, 这就是松弛本身
+		if nextMap, ok := graph[visitedIdx]; ok {
+			for nextIdx, nextLen := range nextMap {
+				if Dis[nextIdx] > Dis[visitedIdx]+nextLen {
+					// 更新最短距离
+					Dis[nextIdx] = Dis[visitedIdx] + nextLen
+					// 更新最短前驱
+					Prev[nextIdx] = visitedIdx
+				}
+			}
+		}
+	}
+	// 根据end节点进行回溯,得到最短路径
+	stepPath := []int{end}
+	for Prev[end] != -1 {
+		stepPath = append(stepPath, Prev[end])
+		end = Prev[end]
+	}
+	if stepPath[len(stepPath)-1] != start {
+		return nil
+	}
+	return ReverseArr(stepPath)
 }
 
 func (f FindShortestPathSolver) BellmanFord(graph map[int][]int, num, start, end int) []int {
