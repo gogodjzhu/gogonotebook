@@ -4,6 +4,7 @@ import (
 	"gogonotebook/algorithm/abstract/data_structure/array"
 	"gogonotebook/algorithm/abstract/data_structure/graph"
 	"gogonotebook/algorithm/abstract/data_structure/list"
+	"gogonotebook/algorithm/abstract/data_structure/tree"
 	"gogonotebook/algorithm/abstract/double_pointer"
 	"gogonotebook/algorithm/abstract/dynamic_programming"
 	"gogonotebook/algorithm/abstract/recursion"
@@ -523,6 +524,42 @@ func TestFindDiffWeightShortestPath(t *testing.T) {
 		actual := solver.DijkstraDiffWeight(tc.graph, tc.num, tc.start, tc.end)
 		if !IdenticalArray(actual, tc.expected) {
 			t.Fatalf("case#%d, expected:%+v, actual%+v", id, tc.expected, actual)
+		}
+	}
+}
+
+func TestBinaryTreeInorderTraversal(t *testing.T) {
+	type testCase struct {
+		root     *TreeNode
+		expected []int
+	}
+	ts := []testCase{
+		{&TreeNode{
+			Val: 3,
+			Left: &TreeNode{
+				Val: 1,
+				Left: &TreeNode{
+					Val: 4,
+				},
+				Right: &TreeNode{
+					Val: 6,
+				},
+			},
+			Right: &TreeNode{
+				Val: 2,
+				Left: &TreeNode{
+					Val: 5,
+				},
+			},
+		},
+			[]int{4, 1, 6, 3, 5, 2},
+		},
+	}
+
+	solver := tree.BinaryTreeInorderTraversal{}
+	for i, tc := range ts {
+		if actual := solver.BinaryTreeInorderTraversalSolve(tc.root); !IdenticalArray(actual, tc.expected) {
+			t.Fatalf("case#%d, expected:%d, actual:%d", i, tc.expected, actual)
 		}
 	}
 }

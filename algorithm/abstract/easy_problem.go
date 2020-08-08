@@ -46,14 +46,6 @@ type ClimbingStairs interface {
 }
 
 /**
-leetcode.94.二叉树的中序遍历
-给定一个二叉树,求它的中序遍历
-*/
-type BinaryTreeInorderTraversal interface {
-	BinaryTreeInorderTraversalSolve(root *TreeNode) []int
-}
-
-/**
 leetcode.100.相同的树
 给定两个二叉树,判断它们是否是相同的
 */

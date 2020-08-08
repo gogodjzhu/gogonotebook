@@ -280,6 +280,14 @@ type DecodeWays interface {
 }
 
 /**
+leetcode.94.二叉树的中序遍历
+给定一个二叉树,求它的中序遍历
+*/
+type BinaryTreeInorderTraversal interface {
+	BinaryTreeInorderTraversalSolve(root *TreeNode) []int
+}
+
+/**
 leetcode.96.不同的二叉搜索树
 给定一个整数n, 求以1...n为节点组成的二叉搜索树有多少种
 eg.1.
