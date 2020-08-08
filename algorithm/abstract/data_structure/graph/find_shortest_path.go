@@ -20,8 +20,10 @@ type FindShortestPathSolver struct {
 /**
 核心思路是从start开始,递归在栈中推入后继节点,直到后继节点为end,记下此时栈的高度即为当前路径的距离.
 再依次出栈
+PS.注意DFS只能解决无环的场景
 */
 func (f FindShortestPathSolver) DFS(graph map[int][]int, num, start, end int) []int {
+	// 由于DFS不能解决有环的图, 亦即只能解决树的问题, 且只有针对二叉树比较好解, 若为多叉又更麻烦
 	// TODO
 	return nil
 }
