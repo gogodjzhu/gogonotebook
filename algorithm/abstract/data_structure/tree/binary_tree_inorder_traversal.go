@@ -2,10 +2,10 @@ package tree
 
 import . "gogonotebook/common"
 
-type BinaryTreeInorderTraversal struct {
+type BinaryTreeInorderTraversalSolver struct {
 }
 
-func (b BinaryTreeInorderTraversal) BinaryTreeInorderTraversalSolve(root *TreeNode) []int {
+func (b BinaryTreeInorderTraversalSolver) BinaryTreeInorderTraversalSolve(root *TreeNode) []int {
 	if root == nil {
 		return []int{}
 	}

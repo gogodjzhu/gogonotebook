@@ -556,7 +556,7 @@ func TestBinaryTreeInorderTraversal(t *testing.T) {
 		},
 	}
 
-	solver := tree.BinaryTreeInorderTraversal{}
+	solver := tree.BinaryTreeInorderTraversalSolver{}
 	for i, tc := range ts {
 		if actual := solver.BinaryTreeInorderTraversalSolve(tc.root); !IdenticalArray(actual, tc.expected) {
 			t.Fatalf("case#%d, expected:%d, actual:%d", i, tc.expected, actual)
