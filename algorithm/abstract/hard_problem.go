@@ -81,20 +81,6 @@ type EditDistance interface {
 }
 
 /**
-leetcode.97.交错字符串
-给定三个字符串 s1, s2, s3, 验证 s3 是否是由 s1 和 s2 交错组成的。
-eg.1.
-input: s1="aabcc", s2="dbbca", s3="aadbbcbcac"
-output: true
-eg.2.
-input: s1="aabcc", s2="dbbca", s3="aadbbbaccc"
-output: false
-*/
-type InterleavingString interface {
-	InterleavingStringSolve(s1 string, s2 string, s3 string) bool
-}
-
-/**
 leetcode.84.柱状图中的最大矩阵
 在给出的柱状图中, 找出能框出来的最大连续矩形面积
 eg.1.
@@ -120,4 +106,18 @@ output:6
 */
 type MaximalRectangle interface {
 	MaximalRectangleSolve(matrix [][]byte) int
+}
+
+/**
+leetcode.97.交错字符串
+给定三个字符串 s1, s2, s3, 验证 s3 是否是由 s1 和 s2 交错组成的。
+eg.1.
+input: s1="aabcc", s2="dbbca", s3="aadbbcbcac"
+output: true
+eg.2.
+input: s1="aabcc", s2="dbbca", s3="aadbbbaccc"
+output: false
+*/
+type InterleavingString interface {
+	InterleavingStringSolve(s1 string, s2 string, s3 string) bool
 }
