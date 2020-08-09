@@ -216,3 +216,22 @@ func TestTrappingRainWater(t *testing.T) {
 		}
 	}
 }
+
+func TestEditDistance(t *testing.T) {
+	type testCase struct {
+		word1, word2 string
+		expected     int
+	}
+	testCases := []testCase{
+		{"nice", "nike", 1},
+		{"nice", "ice", 1},
+		{"nice", "nidle", 2},
+	}
+	solver := dynamic_programming.EditDistanceSolver{}
+	for id, tc := range testCases {
+		actual := solver.EditDistanceSolve(tc.word1, tc.word2)
+		if actual != tc.expected {
+			t.Fatalf("case#%d, expected:%d, actual:%d", id, tc.expected, actual)
+		}
+	}
+}
