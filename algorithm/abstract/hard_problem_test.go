@@ -2,6 +2,7 @@ package abstract
 
 import (
 	"gogonotebook/algorithm/abstract/data_structure/heap"
+	"gogonotebook/algorithm/abstract/data_structure/stack"
 	"gogonotebook/algorithm/abstract/dynamic_programming"
 	"gogonotebook/algorithm/abstract/merge"
 	"gogonotebook/algorithm/abstract/recursion"
@@ -183,6 +184,35 @@ func TestReverseKGroup(t *testing.T) {
 		actual := solver.ReverseKGroupSolve(tc.list, tc.k)
 		if !IsIdentical(actual, tc.expected) {
 			t.Fatal("case#", id, "|expected:", tc.expected.ToString(), "|actual:", actual.ToString())
+		}
+	}
+}
+
+func TestTrappingRainWater(t *testing.T) {
+	type testCase struct {
+		arr      []int
+		expected int
+	}
+
+	testCases := []testCase{
+		{
+			[]int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1},
+			6,
+		},
+		{
+			[]int{0, 0, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1},
+			5,
+		},
+		{
+			[]int{3, 0, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1},
+			9 + 6,
+		},
+	}
+	solver := stack.TrappingRainWaterSolver{}
+	for id, tc := range testCases {
+		actual := solver.TrappingRainWaterSolve(tc.arr)
+		if actual != tc.expected {
+			t.Fatalf("case#%d, expected:%d, actual:%d", id, tc.expected, actual)
 		}
 	}
 }

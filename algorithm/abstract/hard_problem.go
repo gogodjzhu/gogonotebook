@@ -38,6 +38,17 @@ type ReverseKGroup interface {
 }
 
 /**
+leetcode.42.接雨水
+给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水
+eg.1.
+input: [0,1,0,2,1,0,1,3,2,1,2,1]
+output: 6
+*/
+type TrappingRainWater interface {
+	TrappingRainWaterSolve(arr []int) int
+}
+
+/**
 // TODO 待完成
 leetcode.44.通配符匹配
 给定一个字符串 (s) 和一个字符模式 (p) ，实现一个支持 '?' 和 '*' 的通配符匹配。
