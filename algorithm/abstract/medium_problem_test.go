@@ -563,3 +563,23 @@ func TestBinaryTreeInorderTraversal(t *testing.T) {
 		}
 	}
 }
+
+func TestMaximumProductSubarraySolve(t *testing.T) {
+	type testCase struct {
+		nums     []int
+		expected int
+	}
+	testCases := []testCase{
+		{[]int{-2, 0, -1}, 0},
+		{[]int{-2, -3, -1, -2}, 12},
+		{[]int{-2, 0, -1, -2}, 2},
+		{[]int{-2, 0, 0, 0, -1, -2, 2, -2}, 8},
+	}
+
+	solver := dynamic_programming.MaximumProductSubarraySolver{}
+	for i, tc := range testCases {
+		if actual := solver.MaximumProductSubarraySolve(tc.nums); actual != tc.expected {
+			t.Fatalf("case#%d, expected:%d, actual:%d", i, tc.expected, actual)
+		}
+	}
+}

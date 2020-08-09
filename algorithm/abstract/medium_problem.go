@@ -326,6 +326,20 @@ type CloneGraph interface {
 }
 
 /**
+leetcode.152.乘积最大的子数组
+给定一个整数数组 nums ，找出数组中乘积最大的连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积
+eg.1.
+input:[2,3,-2,4]
+output:6
+eg.2.
+input:[-2,0,-1]
+output:0
+*/
+type MaximumProductSubarray interface {
+	MaximumProductSubarraySolve(nums []int) int
+}
+
+/**
 leetcode.207.课程表
 必须选修 n 门课程，记为 0 到 n-1 。
 在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们：[0,1]
