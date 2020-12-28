@@ -15,27 +15,22 @@ func TestCopyStruct(t *testing.T) {
 		f1: "f1",
 		f2: 1,
 	}
-	fmt.Println(&i)
-	fmt.Println(&(i.f1))
-	fmt.Println(&(i.f2))
-	var cc = i
-	fmt.Println(&cc)      // != &i
-	fmt.Println(&(cc.f1)) // != &(i.f1)
-	fmt.Println(&(cc.f2)) // != &(i.f2)
+
+	var cc = i // deep copy
+
+	fmt.Println(&cc == &i)           // false
+	fmt.Println(&(i.f1) == &(cc.f1)) // false
+	fmt.Println(&(i.f2) == &(cc.f2)) // false
 }
 
 func TestCopySlice(t *testing.T) {
-	var i []int
-	i = append(i, 1)
-	i = append(i, 2)
-	var ii = i
+	i := []int{1, 2}
 
-	fmt.Printf("%p\n", &i)
-	fmt.Println(&i[0])
-	fmt.Println(&i[1])
-	fmt.Printf("%p\n", &ii) // != &i
-	fmt.Println(&ii[0])     // == &ii[0]
-	fmt.Println(&ii[1])     // == &ii[1]
+	var ii = i // shallow copy
+
+	fmt.Println(&i == &ii)           // false
+	fmt.Println(&(i[0]) == &(ii[0])) // true
+	fmt.Println(&(i[1]) == &(ii[1])) // true
 }
 
 func TestCopyMap(t *testing.T) {
@@ -44,8 +39,6 @@ func TestCopyMap(t *testing.T) {
 	m[2] = 2
 
 	var mm = m
-	fmt.Printf("%p\n", &m)
-	fmt.Println(m[1])
-
-	fmt.Printf("%p\n", &mm)
+	fmt.Println(&m == &mm)
+	// trick: &m[1] is forbiden to invoke
 }
